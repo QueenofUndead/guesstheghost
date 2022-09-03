@@ -34,6 +34,7 @@ h4 {
 }
 .ghosts {
   position: absolute;
+  cursor: pointer;
 }
 .Shade {
   top: 330px;
@@ -99,7 +100,7 @@ h4 {
 div {
   position: absolute;
   height: 500px;
-  width: 150px;
+  width: 300px;
   padding-left: 10px;
   padding-top: 10px;
   left: 900px;
@@ -191,4 +192,105 @@ div {
 
 .userslist + .userslist {
   margin-top: 20px;
+}
+
+.backgroundimage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.ghostrooms {
+  position: absolute;
+  left: 150px;
+  cursor: pointer;
+}
+
+.Foyer {
+  top: -5px;
+  position: absolute;
+}
+.Livingroom {
+  top: 15px;
+}
+.Kitchen {
+  top: 35px;
+}
+.DiningRoom {
+  top: 55px;
+}
+.Hallway {
+  top: 75px;
+}
+.Workshop {
+  top: 95px;
+}
+.Toilet {
+  top: 115px; 
+}
+.UpstairsHway {
+  top: 135px;
+}
+.Bathroom {
+  top: 155px;
+}
+.Utility {
+  top: 175px;
+}
+.MBedroom {
+  top: 195px;
+}
+.SBathroom {
+  top: 215px;
+}
+.GBedroom{
+  top: 235px;
+}
+.BBedroom {
+  top: 255px;
+}
+.Attic {
+  top: 275px;
+}
+.TBedroom {
+  top: 75px;
+}
+.Nursery {
+  top: 115px;
+}
+.UBathroom {
+  top: 155px;
+}
+.UBedroom {
+  top: 215px;
+}
+.Storage {
+  top: 235px;
+}
+.Garage {
+  top: -5px;
+}
+.BHallway {
+  top: 235px;
+}
+.LStorage {
+  top: 95px;
+}
+.RStorage {
+  top: 115px;
+}
+.Hallway2 {
+  top: 55px;
+}
+.BBedroom2 {
+  top: 175px;
+}
+.MBedroom2 {
+  top: 135px;
+  width: 120px;
+}
+.BHallway2{
+  top: 75px;
+  width: 120px;
 }

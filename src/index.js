@@ -1,121 +1,239 @@
 const User = $("input[name=User]");
 const ghostType = $("input[name=typeguess]");
 const ghostRoom = $("input[name=roomguess]");
-let correctGhost = '';
-let correctUser = [""]
-// 
-function getGhostType() {
-    switch (ghostType) {
-        case $("input[class=Shade][type=radio]"):
-            $("ul").filter("Shade").css("background-color: yellow")
-            break;
-        case $("input[class=Banshee][type=radio]"):
-            $("ul").filter("Banshee").css("background-color: yellow")
-            break;
-        case $("input[type=radio][class=Polterguist]"):
-            $("ul").filter("Polterguist").css("background-color: yellow")
-            break;
-        case "Jinn":
-            $("ul").filter("Jinn")
-            break;
-        case "Mare":
-            $("ul").filter("Mare");
-            break;
-        case "Demon":
-
-            break;
-        case "Yokai":
-
-            break;
-        case "Myling":
-
-            break;
-        case "Raiju":
-            break;
-
-        case "Wraith":
-            break;
-        case "Revenant":
-            break;
-        case "Yurei":
-            break;
-
-        case "Hantu":
-            break;
-        case "Obake":
-            break;
-        case "Phantom":
-            break;
-        case "Oni":
-            break;
-        case "Goryo":
-            break;
-        case "The Twins":
-            break;
-        case "The Mimic":
-            break;
-        case "Spirit":
-            break;
-        case "Onryo":
-            break;
-    }
-    return ghostType;
+let correctGhost;
+let correctRoom;
+function uppercase(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }
-function getGhostRoom() {
-    switch (ghostRoom) {
-        case value:
-
-            break;
-
-    }
-    return ghostRoom;
-}
-function getCorrectGhost(iscorrectGhost) {
+function removeguess(string) {
+    $(string).click(function() {
+        $(this).remove()
+    })
 }
 function log(args) {
     console.log(args)
 }
+function clearroomguess() {
+    $(".Foyer").css("color", "black")
+    $(".Livingroom").css("color", "black")
+    $(".Kitchen").css("color", "black")
+    $(".DiningRoom").css("color", "black")
+    $(".Hallway").css("color", "black")
+    $(".Workshop").css("color", "black")
+    $(".Toilet").css("color", "black")
+    $(".UpstairsHway").css("color", "black")
+    $(".Bathroom").css("color", "black")
+    $(".Utility").css("color", "black")
+    $(".MBedroom").css("color", "black")
+    $(".SBathroom").css("color", "black")
+    $(".GBedroom").css("color", "black")
+    $(".BBedroom").css("color", "black")
+    $(".Attic").css("color", "black")
+}
 $(document).ready(function () {
     $(".submitbutton").click(function () {
-        try {
             if ($(User).val().length <= 0) {
-                alert("please fill out the required areas")
-                log("please fill out the required areas")
-            } else if ($(ghostRoom).val.length <= 0) {
-                alert("please fill out the required areas")
-                log("please fill out the required areas")
-            } else if ($(ghostType).val().length <= 0) {
-                alert("please fill out the required areas")
-                log("please fill out the required areas")
+                $(User).css("background-color", "red")
+            } if ($(ghostRoom).val().length <= 0) {
+                $(ghostRoom).css("background-color", "red")
+            } if ($(ghostType).val().length <= 0) {
+                $(ghostType).css("background-color", "red")
             }
-             else {
+             if ($(User).val() && $(ghostRoom).val() && $(ghostType).val()) {
                 $("#list").append(function() {
-                    $("#list").append("<p>" + User.val() +" | "+ ghostRoom.val() + " | " + ghostType.val() + "</p>").addClass("userslist")
+                    removeguess($("#list").append("<p>" + User.val() +" | "+ uppercase(ghostRoom.val()) + " | " + uppercase(ghostType.val()) + "</p>").addClass("userslist"))
                     $("input[type=text").val("")
                 })
+                $(User).css("background-color", "white")
+                $(ghostType).css("background-color", "white")
+                $(ghostRoom).css("background-color", "white")
             }
-        }
-        catch(err) {
-            console.log(err)
-        }
-        // log("Hello world")
-        // $("#list").append(function() {
-        // $("#list").append("<p>" + $("input[name=User]").val() +" | "+ $("input[name=ghostroom]").val() + " | " + $("input[name=ghosttype]").val() + "</p>").addClass("userslist"); 
-        // $("input[type=text]").val("")
     })
 //});
 $("#remove").click(function () { 
     $("#list").empty();
     $("#correctghost").empty()
     $("input[type=radio]").prop("checked", false);
+    correctGhost = ""
+    correctRoom = ""
+    clearroomguess()
     });
-    $("input[name=ghosttype]").click(function() {
-        getGhostType();
-    })
     $("#ghosts").click(function() {
-        if ($("#list:contains('Shade')").length > 0 && $("#list:contains('Foyer')").length > 0) {
-            $(".userslist").find(":contains('Shade')").css("background-color", "yellow")
-            $(".userslist").find(":contains('Foyer')").css("background-color", "yellow")
+        if ($('#list:contains('+ correctGhost +')').length > 0) {
+            $(".userslist").find(':contains('+ correctGhost +')').css("background-color", "yellow")
+            log("ghost is currently " + correctGhost)
+        }
+        if ($('#list:contains("'+ correctRoom +'")').length > 0) {
+            $(".userslist").find(':contains("'+ correctRoom +'")').css("background-color", "yellow")
+            log("room is currently " +  correctRoom)
         }
     })
+    //$("body").addClass("backgroundimage").css("background-image", background)
+    $("input.Shade").click(function(){
+        correctGhost = "Shade"
+    })
+    $("input.Demon").click(function(){
+        correctGhost = "Demon"
+    })
+    $("input.Wraith").click(function() {
+        correctGhost = "Wraith"
+    })
+    $("input.Myling").click(function() {
+        correctGhost = "Myling"
+    })
+    $("input.Phantom").click(function() {
+        correctGhost = "Phantom"
+    })
+    $("input.Spirit").click(function() {
+        correctGhost = "Spirit"
+    })
+    $("input.Polterguist").click(function() {
+        correctGhost = "Polterguist"
+    })
+    $("input.Yokai").click(function() {
+        correctGhost = "Yokai"
+    })
+    $("input.Raiju").click(function() {
+        correctGhost = "Raiju"
+    })
+    $("input.Wraith").click(function() {
+        correctGhost = "Wraith"
+    })
+    $("input.Revenant").click(function() {
+        correctGhost = "Revenant"
+    })
+    $("input.Yurei").click(function () {
+        correctGhost = "Yurei"
+    })
+    $("input.Hantu").click(function() {
+        correctGhost = "Hantu"
+    })
+    $("input.Onryo").click(function() {
+        correctGhost = "Onryo"
+    })
+    $("input.Obake").click(function() {
+        correctGhost = "Obake"
+    })
+    $("input.Phantom").click(function() {
+        correctGhost = "Phantom"
+    })
+    $("input.Jinn").click(function() {
+        correctGhost = "Jinn"
+    })
+    $("input.Goryo").click(function() {
+        correctGhost = "Goryo"
+    })
+    $("input.Mimic").click(function() {
+        correctGhost = "Mimic"
+    })
+    $("input.Twins").click(function() {
+        correctGhost = "Twins"
+    })
+    $("input.Mare").click(function() {
+        correctGhost = "Mare"
+    })
+    $("input.Banshee").click(function() {
+        correctGhost = "Banshee"
+    })
+    $("input.Oni").click(function() {
+        correctGhost = "Oni"
+    })
+    $(".Foyer").click(function() {
+        clearroomguess()
+        correctRoom = "Foyer"
+        $(this).css("color", "blue")
+    })
+    $(".Livingroom").click(function() {
+        clearroomguess()
+        correctRoom = "Living room"
+        $(this).css("color", "blue")
+    })
+    $(".Kitchen").click(function() {
+        clearroomguess()
+        correctRoom = "Kitchen"
+        $(this).css("color", "blue")
+    })
+    $(".DiningRoom").click(function() {
+        clearroomguess()
+        correctRoom = "Dining room"
+        $(this).css("color", "blue")
+    })
+    $(".Hallway").click(function() {
+        clearroomguess()
+        correctRoom = "Hallway"
+        $(this).css("color", "blue")
+    })
+    $(".Workshop").click(function() {
+        clearroomguess()
+        correctRoom = "Workshop"
+        $(this).css("color", "blue")
+    })
+    $(".Toilet").click(function() {
+        clearroomguess()
+        correctRoom = "Toilet"
+        $(this).css("color", "blue")
+    })
+    $(".UpstairsHway").click(function() {
+        clearroomguess()
+        correctRoom = "Upstairs hallway"
+        $(this).css("color", "blue")
+    })
+    $(".Bathroom").click(function() {
+        clearroomguess()
+        correctRoom = "Bathroom"
+        $(this).css("color", "blue")
+    })
+    $(".Utility").click(function() {
+        clearroomguess()
+        correctRoom = "Utility"
+        $(this).css("color", "blue")
+    })
+    $(".MBedroom").click(function() {
+        clearroomguess()
+        correctRoom = "Master bedroom"
+        $(this).css("color", "blue")
+    })
+    $(".SBathroom").click(function () {
+        clearroomguess()
+        correctRoom = "Side bathroom"
+        $(this).css("color", "blue")
+    })
+    $(".GBedroom").click(function() {
+        clearroomguess()
+        correctRoom = "Girls bedroom"
+        $(this).css("color", "blue")
+    })
+    $(".BBedroom").click(function() {
+        clearroomguess()
+        correctRoom = "Boys bedroom"
+        $(this).css("color", "blue")
+    })
+    $(".Attic").click(function() {
+        clearroomguess()
+        correctRoom = "Attic"
+        $(this).css("color", "blue")
+    })
+    $(".bleasdale").click(function () {
+        window.location.href = "./bleasdale.html"
+    })
+    $(".grafton").click(function() {
+        window.location.href = "./grafton.html"
+    })
+    $(".willow").click(function() {
+        window.location.href = "./willow.html"
+    })
 });
+
+function main() {
+    window.location.href = "index.html"
+}
+function bleasdale() {
+    window.location.href = "bleasdale.html"
+}
+function grafton() {
+    window.location.href = "grafton.html"
+}
+function willow(){
+    window.location.href = "willow.html"
+}
