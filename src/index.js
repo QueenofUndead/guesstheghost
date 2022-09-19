@@ -3,6 +3,7 @@ const ghostType = $("input[name=typeguess]");
 const ghostRoom = $("input[name=roomguess]");
 let correctGhost;
 let correctRoom;
+let main, bleasdale, willow, grafton, ridgeview
 function uppercase(str) {
     return str.charAt(0).toUpperCase() + str.slice(1)
 }
@@ -69,7 +70,7 @@ $("#remove").click(function () {
             log("room is currently " +  correctRoom)
         }
     })
-    //$("body").addClass("backgroundimage").css("background-image", background)
+
     $("input.Shade").click(function(){
         correctGhost = "Shade"
     })
@@ -225,15 +226,27 @@ $("#remove").click(function () {
     })
 });
 
-function main() {
-    window.location.href = "index.html"
-}
-function bleasdale() {
-    window.location.href = "bleasdale.html"
-}
-function grafton() {
-    window.location.href = "grafton.html"
-}
-function willow(){
-    window.location.href = "willow.html"
+function getMap(name) {
+    if (name === main) {
+        if (window.location.href != "index.html") {
+            window.location.href = "index.html"
+        }
+    }
+    if (name === willow) {
+        window.location.href = "willow.html"
+        if (window.location.href != "willow.html") {
+            window.location.href = "willow.html"
+        }
+    }
+    if (name === bleasdale) {
+        if (window.location.href != "bleasdale.html") {
+            window.location.href = "bleasdale.html"
+        }
+    }
+    else if (name === grafton) {
+        window.location.href = "grafton.html"
+    }
+    else if (name === ridgeview) {
+        window.location.href = "ridgeview.html"
+    }
 }
